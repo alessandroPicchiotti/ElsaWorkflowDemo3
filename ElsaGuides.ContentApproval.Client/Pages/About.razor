@@ -1,0 +1,80 @@
+﻿@page "/about"
+
+<PageTitle>About</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+    <MudPaper Elevation="3" Class="pa-6">
+        <MudText Typo="Typo.h4" GutterBottom="true">
+            <MudIcon Icon="@Icons.Material.Filled.Info" Class="mr-2" />
+            About This Application
+        </MudText>
+        <MudDivider Class="my-4" />
+
+        <MudText Typo="Typo.h6" GutterBottom="true">Document Approval System</MudText>
+        <MudText Typo="Typo.body1" Class="mb-4">
+            A modern workflow-based document approval system built with cutting-edge technologies.
+        </MudText>
+
+        <MudText Typo="Typo.h6" GutterBottom="true" Class="mt-6">Technology Stack</MudText>
+        <MudList T="string">
+            <MudListItem Icon="@Icons.Material.Filled.Code">
+                <MudText><strong>.NET 8.0</strong> - Latest LTS framework</MudText>
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.Web">
+                <MudText><strong>Blazor WebAssembly</strong> - Modern SPA framework</MudText>
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.Palette">
+                <MudText><strong>MudBlazor</strong> - Material Design component library</MudText>
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.AccountTree">
+                <MudText><strong>Elsa Workflows 3.x</strong> - Powerful workflow engine</MudText>
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.Storage">
+                <MudText><strong>SQL Server</strong> - Enterprise database</MudText>
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.Api">
+                <MudText><strong>Swagger/OpenAPI</strong> - API documentation</MudText>
+            </MudListItem>
+        </MudList>
+
+        <MudText  Typo="Typo.h6" GutterBottom="true" Class="mt-6">Features</MudText>
+        <MudList T="string">
+            <MudListItem Icon="@Icons.Material.Filled.CheckCircle">
+                Document submission with validation
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.CheckCircle">
+                Email notifications for approvers
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.CheckCircle">
+                Automatic reminder system
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.CheckCircle">
+                Approval/Rejection workflow
+            </MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.CheckCircle">
+                Real-time status tracking
+            </MudListItem>
+        </MudList>
+
+        <MudDivider Class="my-4" />
+
+        <MudText Typo="Typo.body2" Align="Align.Center" Class="mt-4">
+            <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Small" Class="mr-1" />
+            Created by <strong>Alessandro Picchiotti</strong>
+        </MudText>
+        
+        <MudText Typo="Typo.body2" Align="Align.Center" Class="mt-2">
+            <MudIcon Icon="@Icons.Material.Filled.CalendarToday" Size="Size.Small" Class="mr-1" />
+            2025
+        </MudText>
+
+        <MudButton Variant="Variant.Filled" 
+                   Color="Color.Primary" 
+                   Href="/"
+                   StartIcon="@Icons.Material.Filled.Home"
+                   FullWidth="true"
+                   Class="mt-6">
+            Back to Home
+        </MudButton>
+    </MudPaper>
+</MudContainer>

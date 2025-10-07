@@ -1,0 +1,141 @@
+﻿@page "/workflows"
+@using ElsaGuides.ContentApproval.Shared.Models
+@using ElsaGuides.ContentApproval.Client.Services
+@inject HttpClient HttpClient
+@inject ISnackbar Snackbar
+@inject IWorkflowService WorkflowService
+
+<PageTitle>Workflows</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-8">
+    <MudPaper Elevation="3" Class="pa-6">
+        <MudText Typo="Typo.h4" GutterBottom="true">
+            <MudIcon Icon="@Icons.Material.Filled.ViewList" Class="mr-2" />
+            Workflow Instances
+        </MudText>
+        <MudDivider Class="my-4" />
+
+        @if (isLoading)
+        {
+            <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-4" />
+            <MudText Align="Align.Center" Class="my-8">Loading workflows...</MudText>
+        }
+        else if (workflowInstances == null || !workflowInstances.Any())
+        {
+            <MudAlert Severity="Severity.Info" Class="my-4">
+                <MudText Typo="Typo.body1">
+                    No workflow instances found. Submit a document to create one!
+                </MudText>
+            </MudAlert>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/" StartIcon="@Icons.Material.Filled.Send" Class="mt-4">
+                Submit Document
+            </MudButton>
+        }
+        else
+        {
+            <MudTable Items="@workflowInstances" Hover="true" Breakpoint="Breakpoint.Sm" Dense="true" Elevation="0">
+                <HeaderContent>
+                    <MudTh>Instance ID</MudTh>
+                    <MudTh>Workflow Name</MudTh>
+                    <MudTh>Status</MudTh>
+                    <MudTh>Created</MudTh>
+                    <MudTh>Actions</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Instance ID">
+                        <MudText Typo="Typo.body2" Class="font-monospace">
+                            @context.Id.Substring(0, Math.Min(8, context.Id.Length))...
+                        </MudText>
+                    </MudTd>
+                    <MudTd DataLabel="Workflow Name">@context.WorkflowName</MudTd>
+                    <MudTd DataLabel="Status">
+                        <MudChip T="string" Size="Size.Small" Color="@GetStatusColor(context.Status)">
+                            @context.Status
+                        </MudChip>
+                    </MudTd>
+                    <MudTd DataLabel="Created">
+                        @context.CreatedAt.ToLocalTime().ToString("g")
+                    </MudTd>
+                    <MudTd DataLabel="Actions">
+                        <MudIconButton Icon="@Icons.Material.Filled.Visibility" 
+                                       Size="Size.Small" 
+                                       Color="Color.Primary"
+                                       OnClick="@(() => ViewDetails(context.Id))" />
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+
+            <MudButton Variant="Variant.Text" 
+                       Color="Color.Primary" 
+                       StartIcon="@Icons.Material.Filled.Refresh"
+                       OnClick="LoadWorkflows"
+                       Class="mt-4">
+                Refresh
+            </MudButton>
+        }
+    </MudPaper>
+
+    @if (!string.IsNullOrEmpty(selectedWorkflowId))
+    {
+        <MudPaper Elevation="2" Class="pa-4 mt-4">
+            <MudText Typo="Typo.h6" GutterBottom="true">
+                Workflow Details
+            </MudText>
+            <MudText Typo="Typo.body2">
+                Instance ID: <code>@selectedWorkflowId</code>
+            </MudText>
+            <MudText Typo="Typo.body2" Class="mt-2">
+                <em>Detailed workflow information will be displayed here.</em>
+            </MudText>
+        </MudPaper>
+    }
+</MudContainer>
+
+@code {
+    private bool isLoading = true;
+    private List<WorkflowInstance> workflowInstances = new();
+    private string selectedWorkflowId = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadWorkflows();
+    }
+
+    private async Task LoadWorkflows()
+    {
+        isLoading = true;
+        try
+        {
+            workflowInstances = await WorkflowService.GetWorkflowInstancesAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error loading workflows: {ex.Message}", Severity.Error);
+            workflowInstances = new();
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private Color GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "Running" => Color.Info,
+            "Completed" => Color.Success,
+            "Failed" => Color.Error,
+            "Suspended" => Color.Warning,
+            _ => Color.Default
+        };
+    }
+
+    private void ViewDetails(string workflowId)
+    {
+        selectedWorkflowId = workflowId;
+        Snackbar.Add("Workflow details loaded", Severity.Info);
+    }
+
+    
+}

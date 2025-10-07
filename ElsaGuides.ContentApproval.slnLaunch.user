@@ -9,6 +9,10 @@
       {
         "Path": "ElsaGuides.ContentApproval.Client\\ElsaGuides.ContentApproval.Client.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "ElsaStudioBlazorWasm\\ElsaStudioBlazorWasm.csproj",
+        "Action": "Start"
       }
     ]
   }

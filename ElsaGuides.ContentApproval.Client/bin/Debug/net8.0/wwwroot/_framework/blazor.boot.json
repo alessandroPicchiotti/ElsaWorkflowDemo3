@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ElsaGuides.ContentApproval.Client",
   "resources": {
-    "hash": "sha256-9jmZWn3nAAVHqxEmjmWuOnVso5+41bOEvMIEKgHm2sI=",
+    "hash": "sha256-nf7UNXKyn+VdAK8xGgQyhy4+Y3A1TQ2MDBTW+Y25Ye8=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -216,12 +216,12 @@
       "mscorlib.wasm": "sha256-8qWtIcy8fV43tlcx4DxsF45RlkcfK6588vVoxF7be2E=",
       "netstandard.wasm": "sha256-eOgz2RiO4YaPLOMIGgVLNrcfsQhmLQJzR0N7Pu2teXc=",
       "System.Private.CoreLib.wasm": "sha256-F8T63QCIbMPXPQPqTcuyBAw+oVvZSrWjy88j7fiJQZ4=",
-      "ElsaGuides.ContentApproval.Shared.wasm": "sha256-5AR4g2L2hF+MtF5jsgVIYW90NqjKglAhPv7qctGDH+c=",
-      "ElsaGuides.ContentApproval.Client.wasm": "sha256-FTuj9llmxTAmlCRjYOEZ405Qsz23dGT0bl2ce9iGjFI="
+      "ElsaGuides.ContentApproval.Shared.wasm": "sha256-TLC0uL7NiREUc1rTCnLbMjc7N/ez+0AZl3jvgFEJ8ic=",
+      "ElsaGuides.ContentApproval.Client.wasm": "sha256-/JZz3A+MKSuuj6Xo4JxgELDSdSYVoUZ8SkM7V+/to38="
     },
     "pdb": {
-      "ElsaGuides.ContentApproval.Shared.pdb": "sha256-Y3OyUf54/IWBLyDxb+OJdo4kzU9YARX1ZzzYecUWgIM=",
-      "ElsaGuides.ContentApproval.Client.pdb": "sha256-QGB6gQA21AHYz9LieFdu2xCNb0fTjpkA5SOhQ+gyWvg="
+      "ElsaGuides.ContentApproval.Shared.pdb": "sha256-fNOhgP+IRp4OYdTJKvXUMlY2trB1WHw/vqKrq3KQovo=",
+      "ElsaGuides.ContentApproval.Client.pdb": "sha256-A/xCspceOBMvIdnua/IJW6yI8Pkwt48rsrYI+qS0/ns="
     }
   },
   "cacheBootResources": true,

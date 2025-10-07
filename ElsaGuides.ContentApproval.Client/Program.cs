@@ -19,5 +19,6 @@ builder.Services.AddMudServices();
 
 // Services
 builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddScoped<IWorkflowService, WorkflowService>();
 
 await builder.Build().RunAsync();

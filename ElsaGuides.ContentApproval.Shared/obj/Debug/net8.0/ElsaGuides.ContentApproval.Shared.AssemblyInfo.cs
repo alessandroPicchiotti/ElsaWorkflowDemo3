@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElsaGuides.ContentApproval.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e43f968954bb03ac3bd7ac575f458c3ae0873b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bace9a6e3a4e533e5749058eba4685eebdb8f94a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElsaGuides.ContentApproval.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElsaGuides.ContentApproval.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

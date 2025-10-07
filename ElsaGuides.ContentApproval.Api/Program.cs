@@ -25,6 +25,8 @@ services.AddCors(options =>
     });
 });
 
+Elsa.EndpointSecurityOptions.DisableSecurity();
+
 // Configurazione Elsa 3.x
 services.AddElsa(elsa =>
 {
@@ -56,18 +58,18 @@ services.AddElsa(elsa =>
     //});
 
     //// Activities
-    //elsa.UseHttp(http =>
-    //{
-    //    http.ConfigureHttpOptions = options =>
-    //    {
-    //        options.BaseUrl = new Uri(configuration["Elsa:Server:BaseUrl"]!);
-    //    };
-    //});
-    elsa.UseHttp(http => http.ConfigureHttpOptions = options =>
+    elsa.UseHttp(http =>
     {
-        options.BaseUrl = new Uri("https://localhost:7001");
-        options.BasePath = "/workflows";
+        http.ConfigureHttpOptions = options =>
+        {
+            options.BaseUrl = new Uri(configuration["Elsa:Server:BaseUrl"]!);
+        };
     });
+    //elsa.UseHttp(http => http.ConfigureHttpOptions = options =>
+    //{
+    //    options.BaseUrl = new Uri("https://localhost:7001");
+    //    options.BasePath = "/workflows";
+    //});
 
     // Default Identity features for authentication/authorization.
     elsa.UseIdentity(identity =>
@@ -106,7 +108,6 @@ builder.Services.AddSwaggerGen(options =>
     });
     options.CustomSchemaIds(type => type.ToString()); // <-- aggiungi questa riga!
 });
-Elsa.EndpointSecurityOptions.DisableSecurity();
 
 services.AddControllers();
 
@@ -145,5 +146,5 @@ app.MapControllers();
 //    await runMigrations(scope.ServiceProvider.GetRequiredService<RuntimeElsaDbContext>());
 //    await runMigrations(scope.ServiceProvider.GetRequiredService<IdentityElsaDbContext>());
 //}
-
+//await app.RunElsaMigrationsAsync();
 app.Run();

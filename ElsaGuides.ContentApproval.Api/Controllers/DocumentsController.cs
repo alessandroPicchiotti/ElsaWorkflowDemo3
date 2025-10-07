@@ -1,10 +1,9 @@
 ﻿using Elsa.Workflows.Runtime;
+using Elsa.Workflows.Runtime.Parameters;
 using ElsaGuides.ContentApproval.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElsaGuides.ContentApproval.Api.Controllers;
-
-
 [ApiController]
 [Route("api/[controller]")]
 public class DocumentsController : ControllerBase
@@ -21,37 +20,53 @@ public class DocumentsController : ControllerBase
     }
 
     [HttpPost("submit")]
-    public async Task<ActionResult<DocumentSubmissionResponse>> SubmitDocument(
-        [FromBody] Document document)
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ApiResponse>> SubmitDocument([FromBody] Document document)
     {
         try
         {
-            _logger.LogInformation("Submitting document {DocumentId} from {AuthorName}",
-                document.Id, document.Author.Name);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse
+                {
+                    Success = false,
+                    Message = "Invalid document data"
+                });
+            }
 
-            // Trigger workflow tramite HTTP endpoint
-            // Il workflow sarà triggerato dall'HTTP Endpoint attività configurata nel designer
+            // Trigger workflow usando HTTP endpoint
             var input = new Dictionary<string, object>
             {
                 ["Document"] = document
             };
+            var inputStart = new StartWorkflowRuntimeParams()
+            {
+                Input = new Dictionary<string, object>
+                {
+                    ["Document"] = input
+                }
+            };
+            // In Elsa 3, puoi triggerare workflow in vari modi
+            // Questo è un esempio usando StartWorkflowAsync
+            var result = await _workflowRuntime.StartWorkflowAsync(
+                "DocumentApprovalWorkflow", // Definition ID o Name
+                inputStart
+            );
 
-            // Opzionale: se vuoi triggare il workflow programmaticamente invece che via HTTP
-            // var workflowInstance = await _workflowRuntime.StartWorkflowAsync(
-            //     "DocumentApprovalWorkflow", 
-            //     input);
+            _logger.LogInformation("Workflow started for document {DocumentId}", document.Id);
 
-            return Ok(new DocumentSubmissionResponse
+            return Ok(new ApiResponse
             {
                 Success = true,
-                Message = "Document submitted successfully! The reviewer will be notified.",
-                // WorkflowInstanceId = workflowInstance.Id
+                Message = "Document submitted successfully for approval",
+                Data = new { WorkflowInstanceId = result.WorkflowInstanceId }
             });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error submitting document");
-            return StatusCode(500, new DocumentSubmissionResponse
+            return BadRequest(new ApiResponse
             {
                 Success = false,
                 Message = $"Error: {ex.Message}"
@@ -60,10 +75,28 @@ public class DocumentsController : ControllerBase
     }
 
     [HttpGet("status/{workflowInstanceId}")]
-    public async Task<ActionResult> GetWorkflowStatus(string workflowInstanceId)
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResponse>> GetWorkflowStatus(string workflowInstanceId)
     {
-        // Implementa logica per recuperare lo stato del workflow
-        return Ok(new { status = "pending" });
+        try
+        {
+            // Recupera lo stato del workflow
+            // In Elsa 3, userai IWorkflowInstanceStore
+            return Ok(new ApiResponse
+            {
+                Success = true,
+                Message = "Workflow status retrieved",
+                Data = new { WorkflowInstanceId = workflowInstanceId }
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error getting workflow status");
+            return BadRequest(new ApiResponse
+            {
+                Success = false,
+                Message = $"Error: {ex.Message}"
+            });
+        }
     }
 }
-

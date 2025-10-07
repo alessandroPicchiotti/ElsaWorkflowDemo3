@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElsaGuides.ContentApproval.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElsaGuides.ContentApproval.Client", "ElsaGuides.ContentApproval.Client\ElsaGuides.ContentApproval.Client.csproj", "{C1F7870E-94B1-A506-32E8-9F3678C80A2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElsaStudioBlazorWasm", "ElsaStudioBlazorWasm\ElsaStudioBlazorWasm.csproj", "{782E7221-A3D0-7602-455A-EA75F1D72B67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{C1F7870E-94B1-A506-32E8-9F3678C80A2A}.Release|x64.Build.0 = Release|Any CPU
 		{C1F7870E-94B1-A506-32E8-9F3678C80A2A}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1F7870E-94B1-A506-32E8-9F3678C80A2A}.Release|x86.Build.0 = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|x64.Build.0 = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Debug|x86.Build.0 = Debug|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|x64.ActiveCfg = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|x64.Build.0 = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|x86.ActiveCfg = Release|Any CPU
+		{782E7221-A3D0-7602-455A-EA75F1D72B67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
