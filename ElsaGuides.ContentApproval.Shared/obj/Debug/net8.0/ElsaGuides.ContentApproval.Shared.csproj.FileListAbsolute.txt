@@ -1,0 +1,12 @@
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\bin\Debug\net8.0\ElsaGuides.ContentApproval.Shared.deps.json
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\bin\Debug\net8.0\ElsaGuides.ContentApproval.Shared.dll
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\bin\Debug\net8.0\ElsaGuides.ContentApproval.Shared.pdb
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.AssemblyInfoInputs.cache
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.AssemblyInfo.cs
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.csproj.CoreCompileInputs.cache
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.sourcelink.json
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.dll
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\refint\ElsaGuides.ContentApproval.Shared.dll
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ElsaGuides.ContentApproval.Shared.pdb
+D:\WRKGIT\ElsaWorkFlowDemo3\ElsaGuides.ContentApproval.Shared\obj\Debug\net8.0\ref\ElsaGuides.ContentApproval.Shared.dll

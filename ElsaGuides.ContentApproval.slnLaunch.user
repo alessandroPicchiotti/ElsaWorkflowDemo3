@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "ElsaGuides.ContentApproval.Api\\ElsaGuides.ContentApproval.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ElsaGuides.ContentApproval.Client\\ElsaGuides.ContentApproval.Client.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

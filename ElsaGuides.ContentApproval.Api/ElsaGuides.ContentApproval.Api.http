@@ -1,0 +1,6 @@
+@ElsaGuides.ContentApproval.Api_HostAddress = http://localhost:5019
+
+GET {{ElsaGuides.ContentApproval.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

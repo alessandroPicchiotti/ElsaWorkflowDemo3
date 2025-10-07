@@ -1,0 +1,174 @@
+﻿@page "/"
+@using ElsaGuides.ContentApproval.Shared.Models
+@using ElsaGuides.ContentApproval.Client.Services
+@using MudBlazor
+@inject IDocumentService DocumentService
+@inject ISnackbar Snackbar
+
+<PageTitle>Submit Document</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+    <MudPaper Elevation="3" Class="pa-6">
+        <MudText Typo="Typo.h4" GutterBottom="true">
+            <MudIcon Icon="@Icons.Material.Filled.Description" Class="mr-2" />
+            Submit Document for Approval
+        </MudText>
+        <MudDivider Class="my-4" />
+
+        <EditForm Model="@document" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField 
+                        Label="Document ID" 
+                        @bind-Value="document.Id"
+                        For="@(() => document.Id)"
+                        Variant="Variant.Outlined"
+                        Required="true"
+                        HelperText="Unique identifier for the document" />
+                </MudItem>
+
+                <MudItem xs="12" sm="6">
+                    <MudTextField 
+                        Label="Your Name" 
+                        @bind-Value="document.Author.Name"
+                        For="@(() => document.Author.Name)"
+                        Variant="Variant.Outlined"
+                        Required="true" />
+                </MudItem>
+
+                <MudItem xs="12" sm="6">
+                    <MudTextField 
+                        Label="Your Email" 
+                        @bind-Value="document.Author.Email"
+                        For="@(() => document.Author.Email)"
+                        Variant="Variant.Outlined"
+                        Required="true"
+                        InputType="InputType.Email" />
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudTextField 
+                        Label="Document Body" 
+                        @bind-Value="document.Body"
+                        For="@(() => document.Body)"
+                        Variant="Variant.Outlined"
+                        Lines="8"
+                        Required="true"
+                        HelperText="Minimum 10 characters" />
+                </MudItem>
+
+                <MudItem xs="12" Class="d-flex justify-space-between">
+                    <MudButton 
+                        ButtonType="ButtonType.Submit" 
+                        Variant="Variant.Filled" 
+                        Color="Color.Primary"
+                        Disabled="@isSubmitting"
+                        StartIcon="@Icons.Material.Filled.Send">
+                        @if (isSubmitting)
+                        {
+                            <MudProgressCircular Class="mr-2" Size="Size.Small" Indeterminate="true" />
+                            <span>Submitting...</span>
+                        }
+                        else
+                        {
+                            <span>Submit for Approval</span>
+                        }
+                    </MudButton>
+
+                    <MudButton 
+                        Variant="Variant.Outlined" 
+                        Color="Color.Secondary"
+                        OnClick="ResetForm"
+                        Disabled="@isSubmitting"
+                        StartIcon="@Icons.Material.Filled.Refresh">
+                        Reset
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(workflowInstanceId))
+        {
+            <MudAlert Severity="Severity.Success" Class="mt-4">
+                <MudText Typo="Typo.body1">
+                    ✅ Document submitted successfully!
+                </MudText>
+                <MudText Typo="Typo.body2" Class="mt-2">
+                    Workflow Instance ID: <code>@workflowInstanceId</code>
+                </MudText>
+            </MudAlert>
+        }
+    </MudPaper>
+
+    <MudPaper Elevation="2" Class="pa-4 mt-4">
+        <MudText Typo="Typo.h6" GutterBottom="true">
+            <MudIcon Icon="@Icons.Material.Filled.Info" Class="mr-2" />
+            How it works
+        </MudText>
+        <MudText Typo="Typo.body2">
+            1. Submit your document using the form above<br />
+            2. The reviewer (josh@acme.com) will receive an email notification<br />
+            3. If no action is taken, reminders are sent every 10 seconds<br />
+            4. Once approved or rejected, you'll receive an email notification
+        </MudText>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private Document document = new()
+    {
+        Author = new Author()
+    };
+
+    private bool isSubmitting = false;
+    private string workflowInstanceId = string.Empty;
+
+    private async Task HandleSubmit()
+    {
+        isSubmitting = true;
+        workflowInstanceId = string.Empty;
+
+        try
+        {
+            var result = await DocumentService.SubmitDocumentAsync(document);
+
+            if (result.Success)
+            {
+                Snackbar.Add("Document submitted successfully!", Severity.Success);
+                
+                // Estrai workflow instance ID se disponibile
+                if (result.Data is System.Text.Json.JsonElement jsonElement)
+                {
+                    if (jsonElement.TryGetProperty("WorkflowInstanceId", out var idProperty))
+                    {
+                        workflowInstanceId = idProperty.GetString() ?? string.Empty;
+                    }
+                }
+
+                // Reset form
+                document = new Document { Author = new Author() };
+            }
+            else
+            {
+                Snackbar.Add($"Error: {result.Message}", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Exception: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private void ResetForm()
+    {
+        document = new Document { Author = new Author() };
+        workflowInstanceId = string.Empty;
+        Snackbar.Add("Form reset", Severity.Info);
+    }
+}
