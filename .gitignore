@@ -5,3 +5,8 @@
 /.vs
 /ElsaGuides.ContentApproval.MauiClient/obj
 /ElsaGuides.ContentApproval.MauiClient
+/ElsaGuides.ContentApproval.Api/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+*.dll
+/ElsaGuides.ContentApproval.Api/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/ElsaGuides.ContentApproval.Api/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
+/ElsaGuides.ContentApproval.Api/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
