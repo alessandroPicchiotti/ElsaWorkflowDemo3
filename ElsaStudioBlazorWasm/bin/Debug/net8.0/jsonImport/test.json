@@ -1,0 +1,442 @@
+{
+  "id": "DocumentApprovalWorkflow",
+  "definitionId": "DocumentApprovalWorkflow",
+  "name": "DocumentApprovalWorkflow",
+  "displayName": "Visual Document Approval Workflow",
+  "description": "Document approval workflow with email notifications and reminders",
+  "version": 1,
+  "variables": {
+    "data": {
+      "Document": null
+    }
+  },
+  "customAttributes": {
+    "data": {}
+  },
+  "persistenceBehavior": "WorkflowBurst",
+  "deleteCompletedInstances": false,
+  "publish": true,
+  "isLatest": true,
+  "isPublished": true,
+  "activities": [
+    {
+      "activityId": "http-endpoint-1",
+      "type": "Elsa.Activities.Http.HttpEndpoint",
+      "displayName": "HTTP Endpoint",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Path",
+          "expressions": {
+            "Literal": "/v2/documents"
+          }
+        },
+        {
+          "name": "Methods",
+          "expressions": {
+            "Json": "[\"POST\"]"
+          }
+        },
+        {
+          "name": "ReadContent",
+          "expressions": {
+            "Literal": "true"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "set-variable-1",
+      "type": "Elsa.Activities.Primitives.SetVariable",
+      "displayName": "Set Document Variable",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "VariableName",
+          "expressions": {
+            "Literal": "Document"
+          }
+        },
+        {
+          "name": "Value",
+          "syntax": "JavaScript",
+          "expressions": {
+            "JavaScript": "input.Body"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "send-email-1",
+      "type": "Elsa.Activities.Email.SendEmail",
+      "displayName": "Send Email to Approver",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "From",
+          "expressions": {
+            "Literal": "workflow@acme.com"
+          }
+        },
+        {
+          "name": "To",
+          "expressions": {
+            "Literal": "josh@acme.com"
+          }
+        },
+        {
+          "name": "Subject",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Document received from {{Variables.Document.Author.Name}}"
+          }
+        },
+        {
+          "name": "Body",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Document from {{ Variables.Document.Author.Name }} received for review.<br><a href=\"{{ \"Approve\" | signal_url }}\">Approve</a> or <a href=\"{{ \"Reject\" | signal_url }}\">Reject</a>"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "http-response-1",
+      "type": "Elsa.Activities.Http.WriteHttpResponse",
+      "displayName": "HTTP Response - Received",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "StatusCode",
+          "expressions": {
+            "Literal": "OK"
+          }
+        },
+        {
+          "name": "Content",
+          "expressions": {
+            "Literal": "<h1>Request for Approval Sent</h1><p>Your document has been received and will be reviewed shortly.</p>"
+          }
+        },
+        {
+          "name": "ContentType",
+          "expressions": {
+            "Literal": "text/html"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "fork-1",
+      "type": "Elsa.Activities.ControlFlow.Fork",
+      "displayName": "Fork",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Branches",
+          "expressions": {
+            "Json": "[\"Approve\", \"Reject\", \"Remind\"]"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "signal-received-approve",
+      "type": "Elsa.Activities.Signaling.SignalReceived",
+      "displayName": "Signal Received - Approve",
+      "persistWorkflow": true,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Signal",
+          "expressions": {
+            "Literal": "Approve"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "send-email-approve",
+      "type": "Elsa.Activities.Email.SendEmail",
+      "displayName": "Send Approval Email",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "From",
+          "expressions": {
+            "Literal": "workflow@acme.com"
+          }
+        },
+        {
+          "name": "To",
+          "syntax": "JavaScript",
+          "expressions": {
+            "JavaScript": "Document.Author.Email"
+          }
+        },
+        {
+          "name": "Subject",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Document {{ Variables.Document.Id }} Approved!"
+          }
+        },
+        {
+          "name": "Body",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Great job {{ Variables.Document.Author.Name }}, that document is perfect."
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "signal-received-reject",
+      "type": "Elsa.Activities.Signaling.SignalReceived",
+      "displayName": "Signal Received - Reject",
+      "persistWorkflow": true,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Signal",
+          "expressions": {
+            "Literal": "Reject"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "send-email-reject",
+      "type": "Elsa.Activities.Email.SendEmail",
+      "displayName": "Send Rejection Email",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "From",
+          "expressions": {
+            "Literal": "workflow@acme.com"
+          }
+        },
+        {
+          "name": "To",
+          "syntax": "JavaScript",
+          "expressions": {
+            "JavaScript": "Document.Author.Email"
+          }
+        },
+        {
+          "name": "Subject",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Document {{ Variables.Document.Id }} Rejected"
+          }
+        },
+        {
+          "name": "Body",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Nice try {{ Variables.Document.Author.Name }}, but that document needs work."
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "timer-remind",
+      "type": "Elsa.Activities.Temporal.Timer",
+      "displayName": "Reminder Timer",
+      "persistWorkflow": true,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Timeout",
+          "syntax": "JavaScript",
+          "expressions": {
+            "JavaScript": "Duration.FromSeconds(10)"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "send-email-remind",
+      "type": "Elsa.Activities.Email.SendEmail",
+      "displayName": "Send Reminder Email",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "From",
+          "expressions": {
+            "Literal": "workflow@acme.com"
+          }
+        },
+        {
+          "name": "To",
+          "expressions": {
+            "Literal": "josh@acme.com"
+          }
+        },
+        {
+          "name": "Subject",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "{{ Variables.Document.Author.Name }} is waiting for your review!"
+          }
+        },
+        {
+          "name": "Body",
+          "syntax": "Liquid",
+          "expressions": {
+            "Liquid": "Don't forget to review document {{ Variables.Document.Id }}.<br><a href=\"{{ \"Approve\" | signal_url }}\">Approve</a> or <a href=\"{{ \"Reject\" | signal_url }}\">Reject</a>"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "join-1",
+      "type": "Elsa.Activities.ControlFlow.Join",
+      "displayName": "Join",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "Mode",
+          "expressions": {
+            "Literal": "WaitAny"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "activityId": "http-response-2",
+      "type": "Elsa.Activities.Http.WriteHttpResponse",
+      "displayName": "HTTP Response - Complete",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "name": "StatusCode",
+          "expressions": {
+            "Literal": "OK"
+          }
+        },
+        {
+          "name": "Content",
+          "expressions": {
+            "Literal": "Thanks for the hard work!"
+          }
+        },
+        {
+          "name": "ContentType",
+          "expressions": {
+            "Literal": "text/html"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    }
+  ],
+  "connections": [
+    {
+      "sourceActivityId": "http-endpoint-1",
+      "targetActivityId": "set-variable-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "set-variable-1",
+      "targetActivityId": "send-email-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "send-email-1",
+      "targetActivityId": "http-response-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "http-response-1",
+      "targetActivityId": "fork-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "fork-1",
+      "targetActivityId": "signal-received-approve",
+      "outcome": "Approve"
+    },
+    {
+      "sourceActivityId": "signal-received-approve",
+      "targetActivityId": "send-email-approve",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "send-email-approve",
+      "targetActivityId": "join-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "fork-1",
+      "targetActivityId": "signal-received-reject",
+      "outcome": "Reject"
+    },
+    {
+      "sourceActivityId": "signal-received-reject",
+      "targetActivityId": "send-email-reject",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "send-email-reject",
+      "targetActivityId": "join-1",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "fork-1",
+      "targetActivityId": "timer-remind",
+      "outcome": "Remind"
+    },
+    {
+      "sourceActivityId": "timer-remind",
+      "targetActivityId": "send-email-remind",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "send-email-remind",
+      "targetActivityId": "timer-remind",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "join-1",
+      "targetActivityId": "http-response-2",
+      "outcome": "Done"
+    }
+  ]
+}

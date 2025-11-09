@@ -23,7 +23,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -31,8 +31,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -49,38 +49,42 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Elsa.Api.Client": {
               "target": "Package",
-              "version": "[3.5.1, )"
+              "version": "[3.3.1, )"
             },
             "Elsa.Studio": {
               "target": "Package",
-              "version": "[3.5.1, )"
+              "version": "[3.3.1, )"
             },
             "Elsa.Studio.Core.BlazorWasm": {
               "target": "Package",
-              "version": "[3.5.1, )"
+              "version": "[3.3.1, )"
+            },
+            "Elsa.Studio.Login": {
+              "target": "Package",
+              "version": "[3.3.1, )"
             },
             "Elsa.Studio.Login.BlazorWasm": {
               "target": "Package",
-              "version": "[3.5.1, )"
+              "version": "[3.3.1, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[8.0.21, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[8.0.21, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.9, )",
+              "version": "[8.0.20, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
@@ -104,7 +108,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[9.0.9, 9.0.9]"
+              "version": "[8.0.20, 8.0.20]"
             }
           ],
           "frameworkReferences": {

@@ -153,7 +153,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Runtime.Entities.ActivityExecutionRecordSummary, Elsa.Workflows.Runtime, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Runtime.Entities.ActivityExecutionRecordSummary, Elsa.Workflows.Runtime, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -222,7 +222,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Runtime.Entities.ActivityExecutionRecord, Elsa.Workflows.Runtime, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Runtime.Entities.ActivityExecutionRecord, Elsa.Workflows.Runtime, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -255,52 +255,6 @@
       }
     ],
     "EndpointName": "ElsaWorkflowsApiEndpointsActivityExecutionsReportReport"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/bookmarks/resume",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Request",
-        "Type": "Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
-      }
-    ],
-    "EndpointName": "GetElsaWorkflowsApiEndpointsBookmarksResumeResume"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/bookmarks/resume",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Request",
-        "Type": "Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
-      }
-    ],
-    "EndpointName": "PostElsaWorkflowsApiEndpointsBookmarksResumeResume"
   },
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
@@ -387,31 +341,6 @@
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
     "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/bulk-actions/delete/workflow-instances",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Request",
-        "Type": "Elsa.Workflows.Api.Endpoints.WorkflowInstances.BulkDelete.Request",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Elsa.Workflows.Api.Endpoints.WorkflowInstances.BulkDelete.Response",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete1"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
     "RelativePath": "elsa/api/bulk-actions/delete/workflow-instances/by-id",
     "HttpMethod": "POST",
     "IsController": false,
@@ -432,7 +361,7 @@
         "StatusCode": 200
       }
     ],
-    "EndpointName": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete2"
+    "EndpointName": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete"
   },
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
@@ -696,44 +625,6 @@
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
     "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/descriptors/commit-strategies/activities",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "ElsaWorkflowsApiEndpointsCommitStrategiesActivitiesListList"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/descriptors/commit-strategies/workflows",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "ElsaWorkflowsApiEndpointsCommitStrategiesWorkflowsListList"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
     "RelativePath": "elsa/api/descriptors/expression-descriptors",
     "HttpMethod": "GET",
     "IsController": false,
@@ -741,7 +632,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.Scripting.ExpressionDescriptors.List.ExpressionDescriptorModel, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.Scripting.ExpressionDescriptors.List.ExpressionDescriptorModel, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -760,7 +651,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.IncidentStrategies.List.IncidentStrategyDescriptor, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.IncidentStrategies.List.IncidentStrategyDescriptor, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -779,7 +670,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.LogPersistenceStrategies.List.LogPersistenceStrategyDescriptor, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.LogPersistenceStrategies.List.LogPersistenceStrategyDescriptor, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -836,7 +727,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowActivationStrategies.List.WorkflowActivationStrategyDescriptor, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowActivationStrategies.List.WorkflowActivationStrategyDescriptor, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -895,7 +786,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Features.Models.FeatureDescriptor, Elsa.Features, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Features.Models.FeatureDescriptor, Elsa.Features, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -1133,11 +1024,17 @@
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
     "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/resilience/retries/{activityInstanceId}",
-    "HttpMethod": "GET",
+    "RelativePath": "elsa/api/scripting/javascript/type-definitions/{workflowDefinitionId}",
+    "HttpMethod": "POST",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "Request",
+        "Type": "Elsa.JavaScript.Endpoints.TypeDefinitions.Request",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Void",
@@ -1145,43 +1042,7 @@
         "StatusCode": 204
       }
     ],
-    "EndpointName": "ElsaResilienceEndpointsRetriesListEndpoint"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/resilience/strategies",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
-      }
-    ],
-    "EndpointName": "ElsaResilienceEndpointsResilienceStrategiesListEndpoint"
-  },
-  {
-    "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
-    "Method": "\u003CMapFastEndpoints\u003Eb__2_1",
-    "RelativePath": "elsa/api/simulate-response",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Elsa.Resilience.Endpoints.SimulateResponse.SimulatedResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "ElsaResilienceEndpointsSimulateResponseSimulateResponseEndpoint"
+    "EndpointName": "ElsaJavaScriptEndpointsTypeDefinitionsGet"
   },
   {
     "ContainingType": "FastEndpoints.MainExtensions\u002B\u003C\u003Ec",
@@ -1272,7 +1133,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.PagedListResponse\u00601[[Elsa.Workflows.Api.Models.LinkedWorkflowDefinitionSummary, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.PagedListResponse\u00601[[Elsa.Workflows.Api.Models.LinkedWorkflowDefinitionSummary, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -1393,9 +1254,11 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
+        "Type": "Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.Response",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
       }
     ],
     "EndpointName": "ElsaWorkflowsApiEndpointsWorkflowDefinitionsExecuteGetEndpoint"
@@ -1407,7 +1270,13 @@
     "HttpMethod": "POST",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PostRequest",
+        "Type": "Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.PostRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.Response",
@@ -2098,7 +1967,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowInstances.Variables.Post.ResolvedVariableModel, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowInstances.Variables.Post.ResolvedVariableModel, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -2117,7 +1986,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowInstances.Variables.List.ResolvedVariableModel, Elsa.Workflows.Api, Version=3.5.1.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Elsa.Models.ListResponse\u00601[[Elsa.Workflows.Api.Endpoints.WorkflowInstances.Variables.List.ResolvedVariableModel, Elsa.Workflows.Api, Version=3.3.1.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],

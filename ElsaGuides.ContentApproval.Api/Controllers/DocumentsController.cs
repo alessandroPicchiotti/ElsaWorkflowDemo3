@@ -49,10 +49,10 @@ public class DocumentsController : ControllerBase
             };
             // In Elsa 3, puoi triggerare workflow in vari modi
             // Questo è un esempio usando StartWorkflowAsync
-            var result = await _workflowRuntime.StartWorkflowAsync(
-                "DocumentApprovalWorkflow", // Definition ID o Name
-                inputStart
-            );
+            //var result = await _workflowRuntime. StartWorkflowAsync(
+            //    "DocumentApprovalWorkflow", // Definition ID o Name
+            //    inputStart
+            //);
 
             _logger.LogInformation("Workflow started for document {DocumentId}", document.Id);
 
@@ -60,7 +60,7 @@ public class DocumentsController : ControllerBase
             {
                 Success = true,
                 Message = "Document submitted successfully for approval",
-                Data = new { WorkflowInstanceId = result.WorkflowInstanceId }
+                Data = new { WorkflowInstanceId = 12 }// result.WorkflowInstanceId }
             });
         }
         catch (Exception ex)

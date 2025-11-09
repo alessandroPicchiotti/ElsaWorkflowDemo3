@@ -90,11 +90,34 @@ services.AddElsa(elsa =>
 
     elsa.UseScheduling();
 
-    // Registra workflows
-    elsa.AddWorkflowsFrom<Program>();
+    //// Registra workflows
+    //elsa.AddWorkflowsFrom<Program>();
 
     // Add Elsa API endpoints for Designer
     elsa.UseWorkflowsApi();
+
+    elsa.UseWorkflowsApi();
+
+    // Setup a SignalR hub for real-time updates from the server.
+    elsa.UseRealTimeWorkflows();
+
+    // Enable C# workflow expressions
+    elsa.UseCSharp();
+
+    // Enable JavaScript workflow expressions
+    elsa.UseJavaScript(options => options.AllowClrAccess = true);
+
+    // Enable HTTP activities.
+    elsa.UseHttp(options => options.ConfigureHttpOptions = httpOptions => httpOptions.BaseUrl = new("https://localhost:5001"));
+
+    // Use timer activities.
+    elsa.UseScheduling();
+
+    // Register custom activities from the application, if any.
+    elsa.AddActivitiesFrom<Program>();
+
+    // Register custom workflows from the application, if any.
+    elsa.AddWorkflowsFrom<Program>();
 });
 
 // Swagger

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElsaGuides.ContentApproval.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bace9a6e3a4e533e5749058eba4685eebdb8f94a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5606a49252089301f93a26cf4e309ec22ea0ae4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElsaGuides.ContentApproval.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElsaGuides.ContentApproval.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

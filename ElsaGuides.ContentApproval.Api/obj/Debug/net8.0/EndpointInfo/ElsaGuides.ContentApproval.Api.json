@@ -112,52 +112,6 @@
         }
       }
     },
-    "/elsa/api/simulate-response": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaResilienceEndpointsSimulateResponseSimulateResponseEndpoint",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Elsa.Resilience.Endpoints.SimulateResponse.SimulatedResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/elsa/api/resilience/retries/{activityInstanceId}": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaResilienceEndpointsRetriesListEndpoint",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
-    "/elsa/api/resilience/strategies": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaResilienceEndpointsResilienceStrategiesListEndpoint",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
     "/elsa/api/identity/users": {
       "post": {
         "tags": [
@@ -837,42 +791,12 @@
         }
       }
     },
-    "/elsa/api/bulk-actions/delete/workflow-instances": {
-      "post": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete1",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.WorkflowInstances.BulkDelete.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.WorkflowInstances.BulkDelete.Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/elsa/api/bulk-actions/delete/workflow-instances/by-id": {
       "post": {
         "tags": [
           "ElsaGuides.ContentApproval.Api"
         ],
-        "operationId": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete2",
+        "operationId": "ElsaWorkflowsApiEndpointsWorkflowInstancesBulkDeleteBulkDelete",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1628,8 +1552,15 @@
           "required": true
         },
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.Response"
+                }
+              }
+            }
           }
         }
       },
@@ -1638,6 +1569,16 @@
           "ElsaGuides.ContentApproval.Api"
         ],
         "operationId": "ElsaWorkflowsApiEndpointsWorkflowDefinitionsExecutePostEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.PostRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -2126,100 +2067,6 @@
         }
       }
     },
-    "/elsa/api/descriptors/commit-strategies/workflows": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaWorkflowsApiEndpointsCommitStrategiesWorkflowsListList",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Elsa.Models.ListResponse`1[Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor]"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/elsa/api/descriptors/commit-strategies/activities": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "ElsaWorkflowsApiEndpointsCommitStrategiesActivitiesListList",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Elsa.Models.ListResponse`1[Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor]"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/elsa/api/bookmarks/resume": {
-      "get": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "GetElsaWorkflowsApiEndpointsBookmarksResumeResume",
-        "requestBody": {
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "ElsaGuides.ContentApproval.Api"
-        ],
-        "operationId": "PostElsaWorkflowsApiEndpointsBookmarksResumeResume",
-        "requestBody": {
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
     "/elsa/api/activity-execution-summaries/list": {
       "get": {
         "tags": [
@@ -2456,6 +2303,29 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/elsa/api/scripting/javascript/type-definitions/{workflowDefinitionId}": {
+      "post": {
+        "tags": [
+          "ElsaGuides.ContentApproval.Api"
+        ],
+        "operationId": "ElsaJavaScriptEndpointsTypeDefinitionsGet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Elsa.JavaScript.Endpoints.TypeDefinitions.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
           }
         }
       }
@@ -2811,6 +2681,24 @@
         },
         "additionalProperties": false
       },
+      "Elsa.JavaScript.Endpoints.TypeDefinitions.Request": {
+        "type": "object",
+        "properties": {
+          "workflowDefinitionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "propertyName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Elsa.Models.CountResponse": {
         "type": "object",
         "properties": {
@@ -2846,23 +2734,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Elsa.Features.Models.FeatureDescriptor"
-            },
-            "nullable": true
-          },
-          "count": {
-            "type": "integer",
-            "format": "int64"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Elsa.Models.ListResponse`1[Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor]": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor"
             },
             "nullable": true
           },
@@ -3033,16 +2904,6 @@
         },
         "additionalProperties": false
       },
-      "Elsa.Resilience.Endpoints.SimulateResponse.SimulatedResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Elsa.Workflows.ActivityKind": {
         "enum": [
           0,
@@ -3209,35 +3070,6 @@
             "items": {
               "$ref": "#/components/schemas/Elsa.Workflows.Runtime.ActivityExecutionStats"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Elsa.Workflows.Api.Endpoints.Bookmarks.Resume.Request": {
-        "type": "object",
-        "properties": {
-          "input": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Elsa.Workflows.Api.Endpoints.CommitStrategies.CommitStrategyDescriptor": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "displayName": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -3722,7 +3554,31 @@
             "type": "string",
             "nullable": true
           },
-          "name": {
+          "triggerActivityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityHandle": {
+            "$ref": "#/components/schemas/Elsa.Workflows.Models.ActivityHandle"
+          },
+          "versionOptions": {
+            "$ref": "#/components/schemas/Elsa.Common.Models.VersionOptions"
+          },
+          "input": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Elsa.Workflows.Api.Endpoints.WorkflowDefinitions.Execute.PostRequest": {
+        "type": "object",
+        "properties": {
+          "definitionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
             "type": "string",
             "nullable": true
           },
@@ -3737,11 +3593,6 @@
             "$ref": "#/components/schemas/Elsa.Common.Models.VersionOptions"
           },
           "input": {
-            "type": "string",
-            "nullable": true
-          },
-          "variables": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -4025,17 +3876,6 @@
         "type": "object",
         "properties": {
           "ids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "workflowDefinitionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "workflowDefinitionIds": {
             "type": "array",
             "items": {
               "type": "string"
@@ -4499,8 +4339,7 @@
           "activityState": {
             "type": "object",
             "additionalProperties": { },
-            "nullable": true,
-            "deprecated": true
+            "nullable": true
           },
           "payload": {
             "nullable": true
@@ -4718,9 +4557,6 @@
           },
           "subStatus": {
             "$ref": "#/components/schemas/Elsa.Workflows.WorkflowSubStatus"
-          },
-          "isExecuting": {
-            "type": "boolean"
           },
           "correlationId": {
             "type": "string",
@@ -5113,10 +4949,6 @@
             "type": "string",
             "nullable": true
           },
-          "activityNodeId": {
-            "type": "string",
-            "nullable": true
-          },
           "activityType": {
             "type": "string",
             "nullable": true
@@ -5285,9 +5117,6 @@
           "autoEvaluate": {
             "type": "boolean"
           },
-          "evaluatorType": {
-            "$ref": "#/components/schemas/System.Type"
-          },
           "uiSpecifications": {
             "type": "object",
             "additionalProperties": { },
@@ -5441,10 +5270,6 @@
           },
           "incidentStrategyType": {
             "$ref": "#/components/schemas/System.Type"
-          },
-          "commitStrategyName": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5477,15 +5302,6 @@
           },
           "isFaulted": {
             "type": "boolean"
-          },
-          "aggregateFaultCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5545,11 +5361,6 @@
             "additionalProperties": { },
             "nullable": true
           },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
-          },
           "exception": {
             "$ref": "#/components/schemas/Elsa.Workflows.State.ExceptionState"
           },
@@ -5562,10 +5373,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Elsa.Workflows.ActivityStatus"
-          },
-          "aggregateFaultCount": {
-            "type": "integer",
-            "format": "int32"
           },
           "completedAt": {
             "type": "string",
@@ -5619,15 +5426,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Elsa.Workflows.ActivityStatus"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
-          },
-          "aggregateFaultCount": {
-            "type": "integer",
-            "format": "int32"
           },
           "completedAt": {
             "type": "string",
@@ -5715,8 +5513,7 @@
           "activityState": {
             "type": "object",
             "additionalProperties": { },
-            "nullable": true,
-            "deprecated": true
+            "nullable": true
           },
           "payload": {
             "nullable": true
@@ -5748,11 +5545,6 @@
             "additionalProperties": { },
             "nullable": true
           },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
-          },
           "activityState": {
             "type": "object",
             "additionalProperties": { },
@@ -5767,13 +5559,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Elsa.Workflows.ActivityStatus"
-          },
-          "isExecuting": {
-            "type": "boolean"
-          },
-          "faultCount": {
-            "type": "integer",
-            "format": "int32"
           },
           "startedAt": {
             "type": "string",
@@ -5891,18 +5676,11 @@
             "type": "string",
             "nullable": true
           },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
           "status": {
             "$ref": "#/components/schemas/Elsa.Workflows.WorkflowStatus"
           },
           "subStatus": {
             "$ref": "#/components/schemas/Elsa.Workflows.WorkflowSubStatus"
-          },
-          "isExecuting": {
-            "type": "boolean"
           },
           "bookmarks": {
             "type": "array",

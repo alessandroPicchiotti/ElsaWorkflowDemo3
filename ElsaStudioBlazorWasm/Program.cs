@@ -1,15 +1,14 @@
-using Elsa.Studio.Contracts;
-using Elsa.Studio.Core.BlazorWasm.Extensions;
 using Elsa.Studio.Dashboard.Extensions;
-using Elsa.Studio.Extensions;
-using Elsa.Studio.Login.BlazorWasm.Extensions;
-using Elsa.Studio.Login.Extensions;
-using Elsa.Studio.Login.HttpMessageHandlers;
-using Elsa.Studio.Models;
 using Elsa.Studio.Shell;
 using Elsa.Studio.Shell.Extensions;
-using Elsa.Studio.Workflows.Designer.Extensions;
 using Elsa.Studio.Workflows.Extensions;
+using Elsa.Studio.Contracts;
+using Elsa.Studio.Models;
+using Elsa.Studio.Core.BlazorWasm.Extensions;
+using Elsa.Studio.Extensions;
+using Elsa.Studio.Login.BlazorWasm.Extensions;
+using Elsa.Studio.Login.HttpMessageHandlers;
+using Elsa.Studio.Workflows.Designer.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -33,7 +32,8 @@ builder.Services.AddCore();
 builder.Services.AddShell();
 builder.Services.AddRemoteBackend(backendApiConfig);
 builder.Services.AddLoginModule();
-builder.Services.UseElsaIdentity();
+//builder.Services.UseEsaIdentity();
+
 builder.Services.AddDashboardModule();
 builder.Services.AddWorkflowsModule();
 
